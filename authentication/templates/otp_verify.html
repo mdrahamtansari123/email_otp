@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}OTP Verification{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1>OTP Verification</h1>
+    {% if messages %}
+      <ul class="messages mt-4">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <p class="mt-4">Please enter the OTP received on your email:</p>
+    <form class="mt-4" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-primary" type="submit">Verify</button>
+    </form>
+    <p class="mt-4">Generated OTP (for testing): <strong>{{ otp }}</strong></p>
+  </div>
+{% endblock %}

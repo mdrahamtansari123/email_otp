@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="mb-4">Welcome, {{ request.user.email }}!</h1>
+    <p>You have successfully logged in with OTP authentication.</p>
+    {% if request.user.is_authenticated %}
+      <form class="mt-4" action="{% url 'home' %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Logout</button>
+      </form>
+    {% endif %}
+  </div>
+{% endblock %}
